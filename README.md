@@ -9,14 +9,14 @@ python game.py
 ```
 
 `words.txt` contains one five-letter word per line. To create a fresh list of
-about 2,000 five-letter words, run:
+about 5,000 five-letter words, run:
 
 ```powershell
 python generate_words.py
 ```
 
 The generator downloads an open English word list with `urllib`, filters it,
-and writes the first 2,000 entries. `stats.json` is created automatically.
+and writes the first 5,000 entries. `stats.json` is created automatically.
 
 ## Project phases
 
