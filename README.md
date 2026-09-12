@@ -8,18 +8,19 @@ A command-line Wordle game for Python 3. It uses only the standard library.
 python game.py
 ```
 
-`words.txt` contains one five-letter word per line. To create a fresh list of
-about 5,000 five-letter words, run:
+`answers.txt` contains the smaller curated answer pool, while `words.txt`
+contains the larger accepted-guess pool. To refresh both lists, run:
 
 ```powershell
 python generate_words.py
 ```
 
 The generator downloads an open English word list with `urllib`, filters it,
-and writes the first 5,000 entries. `stats.json` is created automatically.
+The generator downloads Wordle-style lists, filters them to five-letter words,
+and writes both files. `stats.json` is created automatically.
 
 ## Project phases
 
-1. Foundation: word-list generation and repository documentation.
+1. Foundation: Wordle-style answer and guess lists.
 2. Core gameplay: six guesses, validation, repeated-letter scoring, and the keyboard.
 3. Persistence and polish: JSON statistics, replay flow, ANSI rendering, and final checks.

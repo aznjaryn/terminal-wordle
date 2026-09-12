@@ -54,16 +54,17 @@ def update_stats(stats, won, guess_number=None):
 
 
 def main():
-    words = load_words()
-    if not words:
-        raise SystemExit("words.txt is missing or contains no valid words.")
+    answers = load_words("answers.txt")
+    words = load_words() | answers
+    if not answers or not words:
+        raise SystemExit("answers.txt or words.txt is missing or invalid.")
     stats_path = Path("stats.json")
     default = {"games_played": 0, "wins": 0, "current_streak": 0,
                "max_streak": 0, "guess_distribution": {str(i): 0 for i in range(1, 7)}}
     stats = {**default, **(json.loads(stats_path.read_text()) if stats_path.exists() else {})}
     stats["guess_distribution"] = {**default["guess_distribution"], **stats["guess_distribution"]}
     while True:
-        answer, guesses, keyboard = random.choice(tuple(words)), [], {}
+        answer, guesses, keyboard = random.choice(tuple(answers)), [], {}
         while len(guesses) < 6:
             render(guesses, keyboard)
             guess = input(f"Guess {len(guesses) + 1}/6: ").strip().lower()
